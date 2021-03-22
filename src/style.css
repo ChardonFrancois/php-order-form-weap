@@ -1,0 +1,78 @@
+body{
+    background: linear-gradient(to bottom, #000, #f1F1F1);
+    
+}
+
+h1{
+    background-image: linear-gradient(to right,green,white, red);
+    -webkit-background-clip: text ;
+    background-clip: text;
+    color: transparent;
+}
+
+a:hover{
+    background-image: linear-gradient(to top,green ,white , red);
+    -webkit-background-clip: text ;
+    background-clip: text;
+    color: transparent;
+    
+}
+
+#form{
+    width: 100vw;
+    padding: 1rem;
+    margin-left: 15rem;
+}
+.required{
+    width: 100vw;
+    padding: 1rem;
+    margin-left: 15rem;
+    color:red;
+    
+}
+.required:hover{
+    background-color: red;
+    color: white;
+    font-size: 20px;
+}
+.input{
+    background: black;
+    color: #22c1c3;
+    font-family: 'Raleway', sans-serif;
+}
+.police{
+    /* font-family: 'Raleway', sans-serif; */
+    font-size: 20px;
+    color: black;
+    font-family: 'Cormorant Unicase', serif;
+}
+.police2{
+    font-family: 'Ranchers', cursive;
+}
+.police-head{
+    font-size: 25px;
+    font-family: 'Cormorant Unicase', serif;
+}
+.title{
+    font-family: 'Cormorant Unicase', serif;
+    font-size: 40px;
+    background-image: linear-gradient(to top,green ,white , red);
+    -webkit-background-clip: text ;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    
+    
+}
+.label{
+    background-image: linear-gradient(to top,green ,white , red);
+    -webkit-background-clip: text ;
+    background-clip: text;
+    color: transparent;
+   
+}
+.btn-submit{
+    font-family: 'Della Respira', serif;
+    font-weight: bolder;
+}
+
