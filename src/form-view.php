@@ -1,3 +1,18 @@
+<?php
+$cookie_name = 'user';
+$cookie_value = '
+customer';
+setcookie($cookie_name, $cookie_value, time() + 86400 );
+
+// if(!isset($_COOKIE[$cookie_name])) {
+//     echo "Cookie named '" . $cookie_name . "' is not set!";
+//   } else {
+//     echo "Cookie '" . $cookie_name . "' is set!<br>";
+//     echo "Value is: " . $_COOKIE[$cookie_name];
+//   }
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,7 +29,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,100&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Della+Respira&display=swap" rel="stylesheet">
-      
+    
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/001/200/979/original/pizza-png.png">
     <link rel="stylesheet" href="./style.css">
     <title>Order Pizzas & drinks</title>
 </head>
@@ -35,8 +51,9 @@
         </ul>
     </nav>
 </div>
-    <p class="text-white bg-success d-flex justify-content-center"><?php echo $confirmed;?></p>
-    <p class="text-white bg-danger d-flex justify-content-center" ><?php echo $refus;?></p>
+    <p class="text-white bg-success d-flex justify-content-center rounded-pill "><?php echo $confirmed . $delivery ?> 
+    </p>
+    <p class="text-white bg-danger d-flex justify-content-center rounded-pill " ><?php echo $refus;?></p>
     <p class=" d-inline required ">* <span>required field</span></p>
     <form class="police2" method="post" method="index.php" id="form">
         <div class="form-row ">

@@ -1,5 +1,6 @@
 body{
     background: linear-gradient(to bottom, #000, #f1F1F1);
+   
     
 }
 
@@ -8,6 +9,9 @@ h1{
     -webkit-background-clip: text ;
     background-clip: text;
     color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 a:hover{
@@ -76,3 +80,4 @@ a:hover{
     font-weight: bolder;
 }
 
+ 

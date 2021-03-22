@@ -5,6 +5,8 @@ declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
 session_start();
 
+
+
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
@@ -19,6 +21,8 @@ function whatIsHappening() {
 //validate form
 $emailErr = $streetErr = $streetNumberErr = $cityErr = $zipcodeErr = '';
 $email = $street = $streetNumber = $city = $zipcode = '' ;
+
+
 
 $confirmed = " ";
 $refus = " ";
@@ -65,27 +69,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $zipcodeErr = 'only number allowed';
         }
       }
-      if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-          $refus = "votre commande n'a pas été validé";
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL) && empty($_POST['email']) ){
+          $refus = "votre commande n'a pas été validée";
           
           
-        }elseif(!preg_match("/^[a-zA-Z-' ]*$/",$street)){
-            $refus = "votre commande n'a pas été validé";
+        }elseif(!preg_match("/^[a-zA-Z-' ]*$/",$street) || empty($_POST['street'])){
+            $refus = "votre commande n'a pas été validée";
             
         }elseif(!ctype_digit($streetNumber)){
-            $refus = "votre commande n'a pas été validé";
-        }elseif(!preg_match("/^[a-zA-Z-' ]*$/",$city)){
-            $refus = "votre commande n'a pas été validé";
+            $refus = "votre commande n'a pas été validée";
+        }elseif(!preg_match("/^[a-zA-Z-' ]*$/",$city) || empty($_POST['city'])){
+            $refus = "votre commande n'a pas été validée";
         }elseif(!ctype_digit($zipcode)){
-            $refus = "votre commande n'a pas été validé";
-        }else{
+            $refus = "votre commande n'a pas été validée";
+        }elseif(!isset($_POST['products'])){
+          $refus = "Command not found";
+        }
+        
+        else{
             $confirmed = 'commande confirmed an email has been sent to you.';
             
             
         }
     }
         
-        
+       $_SESSION['email'] = $email;
+       $_SESSION['street'] = $street;
+       $_SESSION['streetnumber'] = $streetNumber;
+       $_SESSION['city'] = $city;
+       $_SESSION['zipcode'] = $zipcode;
+
             
         
             
@@ -96,8 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
   
 
+       function input($data) {
 
-function input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -135,6 +148,7 @@ function input($data) {
     ];
     
     $totalValue = 0;
+    
     //switch de page 
     $products = $pizza;
     if(isset($_GET['food'])){
@@ -149,8 +163,22 @@ function input($data) {
         foreach($_POST['products'] as $i => $product){
             $totalValue += $products[$i]['price'];
         }
+       
     }
     if(isset($_POST['express_delivery'])){
         $totalValue += $_POST['express_delivery'];
     }
+
+    // vive les tcheat code ! &nbsp; 
+    if(isset( $_POST['express_delivery']) && !empty($_POST['email']) && !empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && isset($_POST['products']) ){
+      $delivery = " </br>   &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; " ."------- delivery: 30 min -------" ;
+    } elseif(isset($_POST['products']) && !empty($_POST['email']) && !empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode'])){
+      $delivery = " </br>   &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; " . "------- delivery: 1 hour -------" ;
+    } else{
+      $delivery = ' ';
+    }
+
+
+
+
     require 'form-view.php';
