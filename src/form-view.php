@@ -117,11 +117,5 @@ setcookie($cookie_name, $cookie_value, time() + 86400 );
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pizza(s) and drinks.</footer>
 </div>
 
-<style>
-    footer {
-        text-align: center;
-    }
-</style>
-
 </body>
 </html>

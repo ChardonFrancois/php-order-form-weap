@@ -70,18 +70,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       }
       if(!filter_var($email, FILTER_VALIDATE_EMAIL) && empty($_POST['email']) ){
-          $refus = "votre commande n'a pas été validée";
+          $refus = "Order not validated";
           
           
         }elseif(!preg_match("/^[a-zA-Z-' ]*$/",$street) || empty($_POST['street'])){
-            $refus = "votre commande n'a pas été validée";
+            $refus = "Order not validated";
             
         }elseif(!ctype_digit($streetNumber)){
-            $refus = "votre commande n'a pas été validée";
+            $refus = "Order not validated";
         }elseif(!preg_match("/^[a-zA-Z-' ]*$/",$city) || empty($_POST['city'])){
-            $refus = "votre commande n'a pas été validée";
+            $refus = "Order not validated";
         }elseif(!ctype_digit($zipcode)){
-            $refus = "votre commande n'a pas été validée";
+            $refus = "Order not validated";
         }elseif(!isset($_POST['products'])){
           $refus = "Command not found";
         }
@@ -173,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset( $_POST['express_delivery']) && !empty($_POST['email']) && !empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && isset($_POST['products']) ){
       $delivery = " </br>   &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; " ."------- delivery: 30 min -------" ;
     } elseif(isset($_POST['products']) && !empty($_POST['email']) && !empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode'])){
-      $delivery = " </br>   &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; " . "------- delivery: 1 hour -------" ;
+      $delivery = " </br>   &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; " . "------- delivery: 1 hour -------" ;
     } else{
       $delivery = ' ';
     }
